@@ -1,0 +1,6 @@
+[
+  {"id": 1, "title": "Математический анализ", "category": "учёба", "amount": 4, "completed": true},
+  {"id": 2, "title": "Программирование на Python", "category": "учёба", "amount": 3, "completed": false},
+  {"id": 3, "title": "Баскетбол", "category": "спорт", "amount": 2, "completed": false},
+  {"id": 4, "title": "Английский язык", "category": "учёба", "amount": 2, "completed": true}
+]

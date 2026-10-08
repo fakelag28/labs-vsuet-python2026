@@ -6,7 +6,6 @@
 
 from table import row_sums, column_sums, diagonal_pattern, transform
 
-
 def read_matrix():
     """Прочитать прямоугольную таблицу с проверкой длины каждой строки."""
     rows = int(input("Количество строк: "))
@@ -20,7 +19,6 @@ def read_matrix():
         matrix.append(row)
     return matrix
 
-
 def read_size():
     """Прочитать положительный размер квадратной таблицы."""
     size = int(input("Размер узора: "))
@@ -29,12 +27,10 @@ def read_size():
         size = int(input("Размер узора: "))
     return size
 
-
 def print_matrix(matrix):
     """Вывести таблицу по строкам, элементы разделены пробелами."""
     for row in matrix:
         print(*row)
-
 
 def main():
     """Выполнить основной сценарий программы."""
@@ -52,7 +48,6 @@ def main():
 
     print("Преобразованная таблица:")
     print_matrix(transform(matrix))
-
 
 if __name__ == "__main__":
     main()

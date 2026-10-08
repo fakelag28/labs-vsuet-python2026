@@ -32,7 +32,6 @@ MENU = (
     "8 — выйти\n"
 )
 
-
 def load_at_start():
     """Загрузить данные при запуске.
 
@@ -49,7 +48,6 @@ def load_at_start():
         print(f"Ошибка: файл {DATA_PATH.name} имеет неправильную кодировку, нужна UTF-8.")
         return None
     except json.JSONDecodeError as error:
-        # JSONDecodeError — подкласс ValueError, поэтому обработчик идёт раньше.
         print(f"Ошибка: файл {DATA_PATH.name} повреждён: {error}")
         return None
     except OSError as error:
@@ -63,7 +61,6 @@ def load_at_start():
         return None
     return data
 
-
 def read_non_empty(prompt):
     """Запросить непустую строку без пробелов по краям."""
     while True:
@@ -71,7 +68,6 @@ def read_non_empty(prompt):
         if text:
             return text
         print("Значение не должно быть пустым")
-
 
 def read_int(prompt):
     """Запросить целое число с повторным вводом при ошибке."""
@@ -82,7 +78,6 @@ def read_int(prompt):
         except ValueError:
             print("Нужно целое число")
 
-
 def read_amount():
     """Запросить целое количество не меньше нуля."""
     while True:
@@ -91,7 +86,6 @@ def read_amount():
             print("Количество не может быть отрицательным")
             continue
         return amount
-
 
 def read_yes_no(prompt):
     """Запросить ответ «да» или «нет», повторяя вопрос при другом ответе."""
@@ -103,11 +97,9 @@ def read_yes_no(prompt):
             return False
         print("Ответьте «да» или «нет»")
 
-
 def confirm(prompt):
     """Вернуть True только при ответе «да»; другой ответ отменяет действие."""
     return input(prompt).strip().lower() == "да"
-
 
 def print_record(record):
     """Вывести одну запись одной строкой."""
@@ -117,11 +109,9 @@ def print_record(record):
         f"{record['amount']} {UNIT} | {status}"
     )
 
-
 def record_id_value(record):
     """Вспомогательная функция: идентификатор записи для сортировки."""
     return record["id"]
-
 
 def show_records(records):
     """Показать все записи по возрастанию идентификатора."""
@@ -131,7 +121,6 @@ def show_records(records):
     for record in sorted(records, key=record_id_value):
         print_record(record)
 
-
 def add_dialog(records):
     """Запросить данные новой записи и добавить её."""
     title = read_non_empty("Название занятия: ")
@@ -139,7 +128,6 @@ def add_dialog(records):
     amount = read_amount()
     record = add_record(records, title, category, amount)
     print(f"Добавлена запись с идентификатором {record['id']}")
-
 
 def find_dialog(records):
     """Найти записи по подстроке названия."""
@@ -159,7 +147,6 @@ def find_dialog(records):
     for record in found:
         print_record(record)
 
-
 def status_dialog(records):
     """Изменить статус записи по её идентификатору."""
     record_id = read_int("Идентификатор записи: ")
@@ -169,7 +156,6 @@ def status_dialog(records):
     completed = read_yes_no("Отметить занятие как выполненное? (да/нет): ")
     set_completed(records, record_id, completed)
     print("Статус изменён: " + ("выполнено" if completed else "не выполнено"))
-
 
 def delete_dialog(records):
     """Удалить запись по идентификатору после подтверждения."""
@@ -182,7 +168,6 @@ def delete_dialog(records):
         print("Запись удалена")
     else:
         print("Удаление отменено")
-
 
 def statistics_dialog(records):
     """Показать статистику по текущему списку записей."""
@@ -198,7 +183,6 @@ def statistics_dialog(records):
     for category in sorted(data["by_category"]):
         print(f"  {category}: {data['by_category'][category]}")
 
-
 def save_data(records):
     """Сохранить данные. True при успехе, False при ошибке записи."""
     try:
@@ -209,13 +193,11 @@ def save_data(records):
     print(f"Данные сохранены в {DATA_PATH.name}")
     return True
 
-
 def exit_dialog(records):
     """Предложить сохранить данные. True — выходить, False — остаться в меню."""
     if read_yes_no("Сохранить данные перед выходом? (да/нет): "):
         return save_data(records)
     return True
-
 
 def main():
     records = load_at_start()
@@ -247,7 +229,6 @@ def main():
                 return
         else:
             print("Неизвестная команда, выберите номер от 1 до 8")
-
 
 if __name__ == "__main__":
     main()

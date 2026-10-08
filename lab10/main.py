@@ -14,7 +14,6 @@ FOLDER = Path(__file__).resolve().parent
 SOURCE = FOLDER / "matrix.txt"
 REPORT = FOLDER / "report.txt"
 
-
 def read_positive_integer():
     """Повторяет ввод, пока не получено целое число больше нуля.
 
@@ -33,7 +32,6 @@ def read_positive_integer():
             continue
         return number
 
-
 def selected_sum(matrix):
     """Вариант 1: сумма положительных элементов матрицы.
 
@@ -47,7 +45,6 @@ def selected_sum(matrix):
                 total += value
     return total
 
-
 def build_report(matrix):
     """Формирует текст отчёта по матрице."""
     lines = [
@@ -56,7 +53,6 @@ def build_report(matrix):
         "Результат варианта: " + str(selected_sum(matrix)),
     ]
     return "\n".join(lines) + "\n"
-
 
 def main():
     """Точка входа: ввод числа, чтение файла, запись отчёта."""
@@ -88,7 +84,6 @@ def main():
         return
 
     print("Отчёт записан: " + REPORT.name)
-
 
 if __name__ == "__main__":
     main()

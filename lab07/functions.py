@@ -4,7 +4,6 @@
 принимают данные параметрами и возвращают результат через return.
 """
 
-
 def sum_digits(number):
     """Вернуть сумму цифр модуля числа.
 
@@ -19,7 +18,6 @@ def sum_digits(number):
         value //= 10
     return total
 
-
 def average(numbers):
     """Вернуть среднее чисел списка либо None, если список пуст.
 
@@ -28,7 +26,6 @@ def average(numbers):
     if not numbers:
         return None
     return sum(numbers) / len(numbers)
-
 
 def normalize_text(text):
     """Вернуть текст в нижнем регистре с одним пробелом между словами.
@@ -39,7 +36,6 @@ def normalize_text(text):
     """
     words = text.lower().split()
     return " ".join(words)
-
 
 def select_numbers(numbers, threshold):
     """Вернуть НОВЫЙ список чисел, строго больших порога (вариант 1).

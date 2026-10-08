@@ -7,13 +7,11 @@ from tempfile import TemporaryDirectory
 
 from files_lab import read_matrix
 
-
 def read_from_text(directory, text):
     """Записывает текст во временный файл matrix.txt и читает из него матрицу."""
     path = Path(directory) / "matrix.txt"
     path.write_text(text, encoding="utf-8")
     return read_matrix(path)
-
 
 def main():
     """Выполняет все проверки чтения матрицы."""
@@ -66,7 +64,6 @@ def main():
             assert False, "Ошибка не обнаружена"
 
     print("Все проверки чтения матрицы пройдены")
-
 
 if __name__ == "__main__":
     main()

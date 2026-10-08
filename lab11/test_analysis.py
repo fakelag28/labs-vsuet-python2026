@@ -19,11 +19,9 @@ TODOS = [
     {"id": 5, "userId": 5, "title": "Списки", "completed": True},
 ]
 
-
 def ids(records):
     """Вернуть идентификаторы записей списком."""
     return [record["id"] for record in records]
-
 
 def expect_value_error(action, description):
     """Проверить, что действие выбрасывает ValueError."""
@@ -34,16 +32,13 @@ def expect_value_error(action, description):
     else:
         assert False, f"Ошибка не обнаружена: {description}"
 
-
 def check_root_not_list():
     """Корень данных не список."""
     validate_todos({"id": 1})
 
-
 def check_record_not_dict():
     """Запись не является объектом."""
     validate_todos(["строка"])
-
 
 def check_duplicate_id():
     """Идентификатор записи повторяется."""
@@ -52,33 +47,26 @@ def check_duplicate_id():
         {"id": 1, "userId": 2, "title": "B", "completed": False},
     ])
 
-
 def check_missing_user_id():
     """В записи отсутствует ключ userId."""
     validate_todos([{"id": 1, "title": "A", "completed": True}])
-
 
 def check_completed_is_string():
     """Поле completed передано строкой."""
     validate_todos([{"id": 1, "userId": 1, "title": "A", "completed": "false"}])
 
-
 def check_id_is_bool():
     """Идентификатор передан логическим значением."""
     validate_todos([{"id": True, "userId": 1, "title": "A", "completed": True}])
-
 
 def check_id_not_positive():
     """Идентификатор не является положительным."""
     validate_todos([{"id": 0, "userId": 1, "title": "A", "completed": True}])
 
-
 def check_empty_title():
     """Название состоит из пробелов."""
     validate_todos([{"id": 1, "userId": 1, "title": "   ", "completed": True}])
 
-
-# Учебный набор: количества, лидеры и идентификаторы выборки по образцу.
 counts = completion_counts(TODOS)
 assert counts == {5: 2, 10: 2}, counts
 assert top_users(counts) == [5, 10], top_users(counts)
@@ -86,34 +74,28 @@ leaders = top_users(counts)
 saved = [record for record in TODOS if record["completed"] and record["userId"] in leaders]
 assert ids(saved) == [1, 3, 4, 5], ids(saved)
 
-# Пустой список и набор без выполненных задач.
 assert completion_counts([]) == {}
 assert top_users({}) == []
 only_open = [{"id": 1, "userId": 7, "title": "Тест", "completed": False}]
 assert top_users(completion_counts(only_open)) == []
 
-# Единственный лидер и несколько лидеров с одинаковым результатом.
 assert top_users({1: 0, 2: 1, 3: 0}) == [2]
 assert top_users({1: 3, 2: 3, 3: 1}) == [1, 2]
 
-# Индивидуальный вариант 1: все задачи пользователя.
 assert ids(select_tasks(TODOS, 5)) == [1, 2, 5], ids(select_tasks(TODOS, 5))
 assert select_tasks(TODOS, 99) == []
 assert select_tasks(TODOS, 5, None) == select_tasks(TODOS, 5)
 
-# Исходные записи не изменяются.
 before = [record.copy() for record in TODOS]
 select_tasks(TODOS, 5)
 completion_counts(TODOS)
 top_users(completion_counts(TODOS))
 assert TODOS == before, "Исходные записи изменены"
 
-# Проверка структуры: корректные наборы проходят.
 assert validate_todos(TODOS) == TODOS
 assert validate_todos([]) == []
 assert validate_todos([{"id": 1, "userId": 2, "title": "Т", "completed": True, "extra": 5}])
 
-# Проверка структуры: ошибочные наборы отклоняются.
 expect_value_error(check_root_not_list, "корень не список")
 expect_value_error(check_record_not_dict, "запись не словарь")
 expect_value_error(check_duplicate_id, "повторный id")
@@ -123,7 +105,6 @@ expect_value_error(check_id_is_bool, "id = True")
 expect_value_error(check_id_not_positive, "id не положительный")
 expect_value_error(check_empty_title, "пустое название")
 
-# Запись и повторное чтение JSON во временной папке.
 with TemporaryDirectory() as directory:
     path = Path(directory) / "selected.json"
     save_json(path, select_tasks(TODOS, 5))

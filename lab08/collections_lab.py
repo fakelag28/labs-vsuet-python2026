@@ -8,19 +8,14 @@
 в функции, не изменяются: функции только читают их.
 """
 
-# Знаки, которые удаляются с краёв слова (задание 1).
 PUNCTUATION = ".,!?;:"
 
-# Набор записей из условия лабораторной работы (для общей проверки).
 example_records = [
     {"title": "A", "category": "основное", "amount": 4},
     {"title": "B", "category": "дополнительное", "amount": 2},
     {"title": "C", "category": "основное", "amount": 3},
 ]
 
-# Вариант 1, предметная область «Учебные занятия», amount — «Часы».
-# Не менее пяти содержательных записей с тремя категориями,
-# категория «лекции» повторяется.
 study_records = [
     {"title": "Математика", "category": "лекции", "amount": 4},
     {"title": "Физика", "category": "лекции", "amount": 3},
@@ -29,7 +24,6 @@ study_records = [
     {"title": "Математика", "category": "практика", "amount": 3},
     {"title": "Физика", "category": "лабораторные", "amount": 4},
 ]
-
 
 def word_counts(text):
     """Возвращает словарь «слово → количество» для текста.
@@ -46,12 +40,10 @@ def word_counts(text):
         counts[word] = counts.get(word, 0) + 1
     return counts
 
-
 def print_word_counts(counts):
     """Выводит пары «слово: количество» в алфавитном порядке ключей."""
     for word in sorted(counts):
         print(f"{word}: {counts[word]}")
-
 
 def common_topics(first, second):
     """Возвращает отсортированный список общих тем двух списков.
@@ -61,14 +53,12 @@ def common_topics(first, second):
     """
     return sorted(set(first) & set(second))
 
-
 def all_topics(first, second):
     """Возвращает отсортированный список всех уникальных тем.
 
     Используется объединение множеств.
     """
     return sorted(set(first) | set(second))
-
 
 def totals_by_category(records):
     """Возвращает словарь сумм amount по категориям.
@@ -82,7 +72,6 @@ def totals_by_category(records):
         totals[category] = totals.get(category, 0) + record["amount"]
     return totals
 
-
 def titles_in_category(records, category):
     """Возвращает названия записей категории в исходном порядке.
 
@@ -94,13 +83,11 @@ def titles_in_category(records, category):
             titles.append(record["title"])
     return titles
 
-
 def print_category_totals(records):
     """Выводит суммы amount по категориям в алфавитном порядке."""
     totals = totals_by_category(records)
     for category in sorted(totals):
         print(f"{category}: {totals[category]}")
-
 
 if __name__ == "__main__":
     print("=== Задание 1. Частоты слов ===")

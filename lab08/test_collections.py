@@ -15,18 +15,15 @@ from collections_lab import (
     study_records,
 )
 
-
 def check_equal(name, actual, expected):
     """Сравнивает факт с ожиданием, печатает результат, проверяет assert."""
     assert actual == expected, f"{name}: получено {actual!r}, ожидалось {expected!r}"
     print(f"[OK] {name}: {actual!r}")
 
-
 def check_true(name, condition):
     """Проверяет истинность условия и печатает результат."""
     assert condition, f"{name}: условие ложно"
     print(f"[OK] {name}")
-
 
 def test_word_counts():
     """Проверки задания 1: частоты слов."""
@@ -43,7 +40,6 @@ def test_word_counts():
         {"a": 2, "b": 1},
     )
 
-
 def test_topics():
     """Проверки задания 2: общие и все темы."""
     first = ["python", "sql", "python"]
@@ -51,14 +47,12 @@ def test_topics():
     check_equal("common_topics", common_topics(first, second), ["sql"])
     check_equal("all_topics", all_topics(first, second), ["git", "python", "sql"])
 
-    # Один список тем пуст.
     check_equal("common_topics([], ['python'])", common_topics([], ["python"]), [])
     check_equal(
         "all_topics([], ['python', 'sql'])",
         all_topics([], ["python", "sql"]),
         ["python", "sql"],
     )
-
 
 def test_totals_and_titles():
     """Проверки сводки и поиска по категориям для набора из условия."""
@@ -79,7 +73,6 @@ def test_totals_and_titles():
     )
     check_equal("totals_by_category([])", totals_by_category([]), {})
 
-
 def test_records_unchanged():
     """Проверяет, что функции не меняют входные записи."""
     before = [record.copy() for record in example_records]
@@ -87,7 +80,6 @@ def test_records_unchanged():
     titles_in_category(example_records, "основное")
     titles_in_category(example_records, "нет")
     check_equal("example_records не изменены", example_records, before)
-
 
 def test_variant_records():
     """Проверки набора варианта 1: не менее пяти записей, три категории."""
@@ -103,7 +95,6 @@ def test_variant_records():
         {"лекции": 7, "практика": 8, "лабораторные": 6},
     )
 
-
 def main():
     """Запускает все проверки."""
     test_word_counts()
@@ -113,7 +104,6 @@ def main():
     test_variant_records()
     print()
     print("Все проверки пройдены.")
-
 
 if __name__ == "__main__":
     main()

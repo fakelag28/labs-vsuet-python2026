@@ -5,7 +5,6 @@
 а только принимают и возвращают данные.
 """
 
-
 def row_sums(matrix):
     """Вернуть список сумм строк таблицы.
 
@@ -18,7 +17,6 @@ def row_sums(matrix):
             total += value
         sums.append(total)
     return sums
-
 
 def column_sums(matrix):
     """Вернуть список сумм столбцов прямоугольной таблицы.
@@ -34,7 +32,6 @@ def column_sums(matrix):
         for column in range(columns):
             sums[column] += row[column]
     return sums
-
 
 def diagonal_pattern(size):
     """Построить квадратную таблицу размера size (size >= 1).
@@ -53,7 +50,6 @@ def diagonal_pattern(size):
                 line.append(2)
         table.append(line)
     return table
-
 
 def transform(matrix):
     """Вернуть новую таблицу той же формы: отрицательные заменены нулями.

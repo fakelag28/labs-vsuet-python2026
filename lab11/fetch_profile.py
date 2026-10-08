@@ -5,7 +5,6 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
-
 def fetch_profile(login):
     if not login.strip():
         raise ValueError("Логин не должен быть пустым")
@@ -19,7 +18,6 @@ def fetch_profile(login):
     if not isinstance(data, dict) or not isinstance(data.get("login"), str):
         raise ValueError("Ответ не похож на профиль пользователя")
     return data
-
 
 def main():
     try:
@@ -36,7 +34,6 @@ def main():
         print(f"Ошибка данных: {error}")
     except OSError as error:
         print(f"Ошибка доступа: {error}")
-
 
 if __name__ == "__main__":
     main()

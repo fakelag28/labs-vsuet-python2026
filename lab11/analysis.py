@@ -9,7 +9,6 @@
 задачи, дополнительный параметр не используется.
 """
 
-
 def validate_todos(data):
     """Проверить набор задач и вернуть его без изменений.
 
@@ -30,8 +29,6 @@ def validate_todos(data):
             if key not in record:
                 raise ValueError(f"Запись {number}: отсутствует ключ {key}")
 
-        # type(...) is int отсекает логические значения, которые тоже
-        # проходят проверку isinstance(value, int).
         if type(record["id"]) is not int:
             raise ValueError(f"Запись {number}: id должен быть целым числом")
         if record["id"] <= 0:
@@ -53,7 +50,6 @@ def validate_todos(data):
 
     return data
 
-
 def completion_counts(todos):
     """Вернуть словарь «идентификатор пользователя → выполненных задач».
 
@@ -69,7 +65,6 @@ def completion_counts(todos):
             counts[user_id] += 1
     return counts
 
-
 def top_users(counts):
     """Вернуть отсортированный список лидеров по числу выполненных задач.
 
@@ -81,7 +76,6 @@ def top_users(counts):
     if best == 0:
         return []
     return sorted(user_id for user_id in counts if counts[user_id] == best)
-
 
 def select_tasks(todos, user_id, parameter=None):
     """Вернуть новый список задач пользователя user_id.

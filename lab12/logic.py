@@ -21,7 +21,6 @@
 
 KEYS = ("id", "title", "category", "amount", "completed")
 
-
 def validate_records(records):
     """Проверить весь набор записей и вернуть его без изменений."""
     if not isinstance(records, list):
@@ -36,8 +35,6 @@ def validate_records(records):
             if key not in record:
                 raise ValueError(f"Запись {number}: отсутствует ключ {key}")
 
-        # type(...) is int отсекает логические значения: True проходит
-        # проверку isinstance(value, int), но не является числом по условию.
         if type(record["id"]) is not int:
             raise ValueError(f"Запись {number}: id должен быть целым числом")
         if record["id"] <= 0:
@@ -62,13 +59,11 @@ def validate_records(records):
 
     return records
 
-
 def next_id(records):
     """Идентификатор новой записи: максимум существующих плюс 1."""
     if not records:
         return 1
     return max(record["id"] for record in records) + 1
-
 
 def add_record(records, title, category, amount):
     """Добавить запись с начальным статусом False и вернуть её.
@@ -86,7 +81,6 @@ def add_record(records, title, category, amount):
     records.append(record)
     return record
 
-
 def find_by_id(records, record_id):
     """Вернуть запись по идентификатору или None."""
     for record in records:
@@ -94,14 +88,12 @@ def find_by_id(records, record_id):
             return record
     return None
 
-
 def find_records(records, query):
     """Найти записи по непустой подстроке названия без учёта регистра."""
     part = query.strip().lower()
     if not part:
         raise ValueError("Поисковый запрос не должен быть пустым")
     return [record for record in records if part in record["title"].lower()]
-
 
 def set_completed(records, record_id, completed):
     """Установить выбранный статус записи. False, если запись не найдена."""
@@ -111,7 +103,6 @@ def set_completed(records, record_id, completed):
     record["completed"] = completed
     return True
 
-
 def delete_record(records, record_id):
     """Удалить запись по идентификатору. False, если запись не найдена."""
     for index, record in enumerate(records):
@@ -119,7 +110,6 @@ def delete_record(records, record_id):
             records.pop(index)
             return True
     return False
-
 
 def statistics(records):
     """Вернуть статистику по текущему списку записей.

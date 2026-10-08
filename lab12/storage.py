@@ -6,7 +6,6 @@
 
 import json
 
-
 def load_records(path):
     """Прочитать список записей из файла JSON в UTF-8.
 
@@ -16,7 +15,6 @@ def load_records(path):
     with open(path, "r", encoding="utf-8") as file:
         data = json.load(file)
     return data
-
 
 def save_records(path, records):
     """Записать список записей в файл JSON в UTF-8.

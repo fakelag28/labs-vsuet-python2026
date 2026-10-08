@@ -6,7 +6,6 @@ functions.py. Все результаты показываются через pr
 
 from functions import average, normalize_text, select_numbers, sum_digits
 
-
 def read_numbers_line():
     """Запросить строку чисел через пробел и вернуть список целых.
 
@@ -15,7 +14,6 @@ def read_numbers_line():
     """
     line = input("Введите числа через пробел: ")
     return [int(part) for part in line.split()]
-
 
 def main():
     """Запросить данные и продемонстрировать все четыре функции."""
@@ -35,7 +33,6 @@ def main():
     threshold = int(input("Введите порог: "))
     selected = select_numbers(numbers, threshold)
     print("Числа больше порога:", selected)
-
 
 if __name__ == "__main__":
     main()

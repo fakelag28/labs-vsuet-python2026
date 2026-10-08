@@ -13,7 +13,6 @@ TODOS_PATH = FOLDER / "todos.json"
 LEADERS_PATH = FOLDER / "leaders.json"
 SELECTED_PATH = FOLDER / "selected.json"
 
-
 def read_todos(path):
     """Прочитать набор задач из файла и проверить структуру.
 
@@ -24,12 +23,10 @@ def read_todos(path):
         data = json.load(file)
     return validate_todos(data)
 
-
 def save_json(path, data):
     """Записать данные в JSON в UTF-8."""
     with open(path, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=2)
-
 
 def read_user_id():
     """Запросить положительный целый идентификатор пользователя."""
@@ -45,7 +42,6 @@ def read_user_id():
             continue
         return user_id
 
-
 def leaders_tasks(todos, leaders):
     """Вернуть выполненные задачи лидеров в исходном порядке."""
     return [
@@ -53,7 +49,6 @@ def leaders_tasks(todos, leaders):
         for record in todos
         if record["completed"] and record["userId"] in leaders
     ]
-
 
 def main():
     try:
@@ -65,7 +60,6 @@ def main():
         print("Файл имеет неправильную кодировку, ожидается UTF-8")
         return
     except json.JSONDecodeError as error:
-        # JSONDecodeError — подкласс ValueError, поэтому обработчик стоит раньше.
         print(f"Ошибка разбора JSON: {error}")
         return
     except ValueError as error:
@@ -93,8 +87,6 @@ def main():
     for record in selected:
         print(f"  {record['id']}: {record['title']}")
 
-    # Прежние результаты не перезаписываются: запись идёт после того, как
-    # входной файл успешно прочитан и проверен.
     try:
         save_json(LEADERS_PATH, leaders_tasks(todos, leaders))
         save_json(SELECTED_PATH, selected)
@@ -102,7 +94,6 @@ def main():
         print(f"Не удалось сохранить результаты: {error}")
         return
     print(f"Сохранено: {LEADERS_PATH.name}, {SELECTED_PATH.name}")
-
 
 if __name__ == "__main__":
     main()

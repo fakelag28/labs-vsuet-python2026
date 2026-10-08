@@ -1,7 +1,3 @@
-# workload.py
-# Обязательное задание 2. Учебная нагрузка за неделю.
-# Количество занятий — целые неотрицательные, продолжительность — положительная.
-
 print("Учебная нагрузка за неделю")
 print("Введите данные по двум предметам и доступное время.")
 
@@ -15,7 +11,6 @@ minutes2 = int(input("Продолжительность занятия 2 (ми�
 
 available_hours = float(input("Доступное время на неделю (часов): "))
 
-# Проверяем ограничения из условия.
 if lessons1 < 0 or lessons2 < 0:
     print("Ошибка: количество занятий не может быть отрицательным.")
     raise SystemExit(1)
@@ -23,15 +18,12 @@ if minutes1 <= 0 or minutes2 <= 0:
     print("Ошибка: продолжительность занятия должна быть положительной.")
     raise SystemExit(1)
 
-# Время по каждому предмету в минутах.
 time1_minutes = lessons1 * minutes1
 time2_minutes = lessons2 * minutes2
 
-# Общая нагрузка.
 total_minutes = time1_minutes + time2_minutes
 total_hours = total_minutes / 60
 
-# Остаток свободного времени и нагрузка за четыре одинаковые недели.
 free_hours = available_hours - total_hours
 four_weeks_hours = total_hours * 4
 
